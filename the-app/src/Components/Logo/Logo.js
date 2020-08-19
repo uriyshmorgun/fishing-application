@@ -1,9 +1,15 @@
-import React from 'react'
-import { styles } from './style'
+import React from 'react';
+import { styles } from './style';
 
 function Logo() {
   return (
-    <svg version="1.1" id="layer" x="0px" y="0px" viewBox="0 0 652 652" style={styles.svgWidth}>
+    <svg
+      version="1.1"
+      id="layer"
+      x="0px"
+      y="0px"
+      viewBox="0 0 652 652"
+      style={styles.svgWidth}>
       <g>
         <path
           style={styles.svgBackground}
@@ -188,7 +194,7 @@ function Logo() {
         />
       </g>
     </svg>
-  )
+  );
 }
 
-export default Logo
+export default Logo;
