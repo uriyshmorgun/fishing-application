@@ -1,8 +1,15 @@
 import React from 'react'
+import Header from './Components/Header'
+import SimpleTabs from './Components/Tabs'
+import './App.css'
 
-let a = 33
 function App() {
-  return <div className="App"></div>
+  return (
+    <>
+      <Header />
+      <SimpleTabs />
+    </>
+  )
 }
 
 export default App
