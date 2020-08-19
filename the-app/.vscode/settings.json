@@ -6,5 +6,8 @@
     "editor.formatOnSave": true,
     "[javascript]": {
         "editor.formatOnSave": true
+    },
+    "files.associations": {
+        "*.js": "javascriptreact"
     }
 }

@@ -1,6 +1,6 @@
 export const styles = {
   svgWidth: {
-    width: '85px',
+    width: '90px',
   },
   svgBackground: {
     fill: '#fefeff',
