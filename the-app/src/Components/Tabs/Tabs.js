@@ -4,7 +4,7 @@ import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import TabPanel from './TabPanel'
 import className from 'classnames'
-import Box from '@material-ui/core/Box'
+import TestPanel from './../TestPanel'
 
 const useStyles = makeStyles(theme => ({
    tabsRoot: {
@@ -63,7 +63,7 @@ export default function SimpleTabs(props) {
             value={value}
             onChange={handleChange}
             aria-label="simple tabs example">
-            <Tab className={className(classes.tabPanelCapitalize)} label="Item One" />
+            <Tab className={className(classes.tabPanelCapitalize)} label="Test" />
             <Tab className={className(classes.tabPanelCapitalize)} label="two" />
             <Tab className={className(classes.tabPanelCapitalize)} label="three" />
          </Tabs>
@@ -74,7 +74,7 @@ export default function SimpleTabs(props) {
                classes.tabPanelwidth,
                props.checked ? classes.tabPanel : classes.darkPanel,
             )}>
-            Item One
+            <TestPanel />
          </TabPanel>
          <TabPanel
             value={value}

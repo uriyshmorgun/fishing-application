@@ -26,12 +26,9 @@ function App() {
    }
 
    useEffect(() => {
-      if (new Date().getHours() >= 19 || new Date().getHours() <= 8) {
+      if (new Date().getHours() >= 19 || (new Date().getHours() <= 8 && !localStorage.getItem('darkstate'))) {
          setDarkState(true)
       }
-   }, [])
-
-   useEffect(() => {
       if (localStorage.getItem('darkstate')) {
          localStorage.getItem('darkstate') === 'true' ? setDarkState(true) : setDarkState(false)
       }

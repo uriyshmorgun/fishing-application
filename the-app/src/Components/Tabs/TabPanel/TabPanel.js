@@ -1,10 +1,17 @@
 import React from 'react'
-import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
-import useStyles from './style'
+import Container from '@material-ui/core/Container'
+import { makeStyles } from '@material-ui/core/styles'
+
+const useStyles = makeStyles(theme => ({
+   root: {
+      padding: '0',
+      margin: '2rem'
+   },
+}))
 
 function TabPanel(props) {
-   // const classes = useStyles()
+   const classes = useStyles()
    const { children, value, index, ...other } = props
    return (
       <div
@@ -14,9 +21,9 @@ function TabPanel(props) {
          aria-labelledby={`vertical-tab-${index}`}
          {...other}>
          {value === index && (
-            <Box p={3}>
-               <Typography>{children}</Typography>
-            </Box>
+            <Container classes={{ root: classes.root }}>
+               <Box>{children}</Box>
+            </Container>
          )}
       </div>
    )
