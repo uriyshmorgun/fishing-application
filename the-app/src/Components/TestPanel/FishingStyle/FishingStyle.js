@@ -6,6 +6,10 @@ import FormControl from '@material-ui/core/FormControl'
 
 const fishingStyles = [
    {
+      value: 'No style',
+      label: 'No style',
+   },
+   {
       value: 'Spinning',
       label: 'Spinning',
    },
