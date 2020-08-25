@@ -1,8 +1,6 @@
 import React from 'react'
 import { Field } from 'formik'
-import InputLabel from '@material-ui/core/InputLabel'
-import Select from '@material-ui/core/Select'
-import FormControl from '@material-ui/core/FormControl'
+import { InputLabel, Select, FormControl, FormHelperText } from '@material-ui/core/'
 
 const fishingStyles = [
    {
@@ -31,22 +29,21 @@ const fishingStyles = [
    },
 ]
 
-export default function FishingStyle() {
+export default function FishingStyle({ errors, touched }) {
    const handleChange = (event, name, setFieldValue) => {
       setFieldValue(name, event.target.value)
    }
+
+   // console.log(errors)
    return (
       <Field name="fishingStyle">
          {({ field, form }) => (
-            <FormControl variant="outlined">
+            <FormControl variant="outlined" error={touched.fishingStyle && Boolean(errors.fishingStyle)}>
                <InputLabel>Fishing styles</InputLabel>
                <Select
                   native
                   label="Select"
                   value={form.values.style}
-                  inputProps={{
-                     name: 'fishingStyle',
-                  }}
                   onChange={e => handleChange(e, field.name, form.setFieldValue)}>
                   {fishingStyles.map(option => (
                      <option key={option.value} value={option.value}>
@@ -54,6 +51,7 @@ export default function FishingStyle() {
                      </option>
                   ))}
                </Select>
+               <FormHelperText>{touched.fishingStyle ? errors.fishingStyle : ''}</FormHelperText>
             </FormControl>
          )}
       </Field>

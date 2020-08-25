@@ -1,36 +1,37 @@
 import React from 'react'
 import { Field } from 'formik'
-import FormLabel from '@material-ui/core/FormLabel'
-import FormControl from '@material-ui/core/FormControl'
-import FormGroup from '@material-ui/core/FormGroup'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import FormHelperText from '@material-ui/core/FormHelperText'
-import { CheckboxWithLabel } from 'formik-material-ui'
+import {
+   Checkbox,
+   FormLabel,
+   FormControl,
+   FormGroup,
+   FormControlLabel,
+   FormHelperText,
+} from '@material-ui/core/'
 
-export default function favoriteFishes() {
+export default function favoriteFishes({ errors, touched }) {
    return (
-      <FormControl component="fieldset">
+      <FormControl component="fieldset" error={touched.favoriteFishes && Boolean(errors.favoriteFishes)}>
          <FormLabel component="legend">Favorite Fishes</FormLabel>
          <FormGroup>
             <FormControlLabel
-               label="One"
-               control={
-                  <Field component={CheckboxWithLabel} name="favoriteFishes" value="One" type="checkbox" />
-               }
+               control={<Field name="favoriteFishes" value="C" type="checkbox" as={Checkbox} />}
+               label="Carp"
             />
             <FormControlLabel
-               label="two"
-               control={
-                  <Field component={CheckboxWithLabel} name="favoriteFishes" value="two" type="checkbox" />
-               }
+               control={<Field name="favoriteFishes" value="Perch" type="checkbox" as={Checkbox} />}
+               label="Perch"
             />
             <FormControlLabel
-               label="three"
-               control={
-                  <Field component={CheckboxWithLabel} name="favoriteFishes" value="three" type="checkbox" />
-               }
+               control={<Field name="favoriteFishes" value="Pike" type="checkbox" as={Checkbox} />}
+               label="Pike"
+            />
+            <FormControlLabel
+               control={<Field name="favoriteFishes" value="Catfish" type="checkbox" as={Checkbox} />}
+               label="Catfish"
             />
          </FormGroup>
+         <FormHelperText>{touched.favoriteFishes ? errors.favoriteFishes : ''}</FormHelperText>
       </FormControl>
    )
 }

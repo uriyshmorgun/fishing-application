@@ -5,6 +5,7 @@ import Tab from '@material-ui/core/Tab'
 import TabPanel from './TabPanel'
 import className from 'classnames'
 import TestPanel from './../TestPanel'
+import Box from '@material-ui/core/Box'
 
 const useStyles = makeStyles(theme => ({
    tabsRoot: {
@@ -14,12 +15,8 @@ const useStyles = makeStyles(theme => ({
 
    root: {
       flexGrow: 1,
-      backgroundColor: theme.palette.background.paper,
-      display: 'flex',
-      position: 'fixed',
-      top: 100 + 'px',
-      bottom: 0 + 'px',
-      width: 100 + '%',
+      height: 'auto',
+      overflow: 'hidden',
    },
    textColorPrimary: {
       color: 'red',
@@ -38,9 +35,11 @@ const useStyles = makeStyles(theme => ({
    },
    tabPanelwidth: {
       width: '100%',
+      minHeight: 'calc(100vh - 148px)',
    },
    tabPanelCapitalize: {
       textTransform: 'capitalize',
+      fontWeight: 600,
    },
 }))
 
@@ -57,7 +56,7 @@ export default function SimpleTabs(props) {
          <Tabs
             classes={{ scroller: classes.tabsRoot, indicator: classes.tabsIndicator }}
             className={className(props.checked ? classes.darkTabs : classes.lightTabs)}
-            orientation="vertical"
+            orientation="horizontal"
             indicatorColor="secondary"
             textColor="secondary"
             value={value}
