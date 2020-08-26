@@ -15,7 +15,7 @@ export default function favoriteFishes({ errors, touched }) {
          <FormLabel component="legend">Favorite Fishes</FormLabel>
          <FormGroup>
             <FormControlLabel
-               control={<Field name="favoriteFishes" value="C" type="checkbox" as={Checkbox} />}
+               control={<Field name="favoriteFishes" value="Carp" type="checkbox" as={Checkbox} />}
                label="Carp"
             />
             <FormControlLabel

@@ -14,6 +14,7 @@ const SignupSchema = Yup.object().shape({
    birthday: Yup.date().min(yesterday, 'Date cannot be less'),
    fishingStyle: Yup.string().required('Choose your fishing style'),
    favoriteFishes: Yup.array().min(2, 'Too less fishes').max(3, 'Too many fishes').nullable(),
+   transferQuestions: Yup.array().required('Pass the test'),
 })
 
 export default SignupSchema

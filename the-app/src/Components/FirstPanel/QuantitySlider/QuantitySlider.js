@@ -1,12 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Field } from 'formik'
 import { Typography, Slider, withStyles } from '@material-ui/core/'
 import Box from '@material-ui/core/Box'
-import { flexbox } from '@material-ui/system'
 
 const QuantitySldr = withStyles({
    root: {
-      width: 250,
+      width: 240,
       height: 6,
    },
    track: { height: 6, borderRadius: 4 },
@@ -26,7 +25,7 @@ const QuantitySldr = withStyles({
 })(Slider)
 
 export default function QuantitySlider(props) {
-   const [value, setValue] = useState(props.state)
+   const [value, setValue] = useState(props.values[`${props.name}`].quantity)
    const handleChange = (event, newValue, name, setFieldValue) => {
       setValue(newValue)
       setFieldValue(name, newValue)
@@ -35,7 +34,7 @@ export default function QuantitySlider(props) {
    return (
       <Field name={props.name}>
          {({ field, form }) => (
-            <Box pt={8} display="flex" flexWrap="wrap" justifyContent="center">
+            <Box pt={6} display="flex" flexDirection="column" flexWrap="wrap" alignItems="center">
                <QuantitySldr
                   value={value}
                   onChange={(e, newValue) => handleChange(e, newValue, field.name, form.setFieldValue)}
@@ -44,15 +43,13 @@ export default function QuantitySlider(props) {
                   color="secondary"
                   valueLabelDisplay="on"
                />
-               {props.name === 'quantityTrips' ? (
-                  <Typography id="range-slider" color="textSecondary" gutterBottom variant="subtitle2">
-                     Choose "min" and "max" fishing result per day
-                  </Typography>
-               ) : (
-                  <Typography id="range-slider" color="textSecondary" gutterBottom variant="subtitle2">
-                     Choose "min" and "max" expenses per fishing day
-                  </Typography>
-               )}
+               <Typography id="range-slider" color="textSecondary" gutterBottom variant="subtitle2">
+                  {/* {form.values[`${props.name}`].messege} */}
+                  {/* {console.log(form)} */}
+                  {props.name === 'quantityMoney'
+                     ? 'Choose "min" and "max" expenses per day'
+                     : 'Choose "min" and "max" fishing result per day'}
+               </Typography>
             </Box>
          )}
       </Field>

@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import TabPanel from './TabPanel'
 import className from 'classnames'
-import TestPanel from './../TestPanel'
-import Box from '@material-ui/core/Box'
+import FirstPanel from './../FirstPanel'
+import SecondPanel from './../SecondPanel'
 
 const useStyles = makeStyles(theme => ({
    tabsRoot: {
@@ -39,13 +39,14 @@ const useStyles = makeStyles(theme => ({
    },
    tabPanelCapitalize: {
       textTransform: 'capitalize',
-      fontWeight: 600,
+      fontWeight: 500,
    },
 }))
 
 export default function SimpleTabs(props) {
    const classes = useStyles()
-   const [value, setValue] = React.useState(0)
+   const [value, setValue] = useState(0)
+   const [donatValue, setDonatValue] = useState([0, 0, 25])
 
    const handleChange = (event, newValue) => {
       setValue(newValue)
@@ -73,7 +74,7 @@ export default function SimpleTabs(props) {
                classes.tabPanelwidth,
                props.checked ? classes.tabPanel : classes.darkPanel,
             )}>
-            <TestPanel />
+            <FirstPanel setValue={setValue} setDonatValue={setDonatValue} />
          </TabPanel>
          <TabPanel
             value={value}
@@ -82,7 +83,7 @@ export default function SimpleTabs(props) {
                classes.tabPanelwidth,
                props.checked ? classes.tabPanel : classes.darkPanel,
             )}>
-            Item Two
+            <SecondPanel donatValue={donatValue} />
          </TabPanel>
          <TabPanel
             value={value}
