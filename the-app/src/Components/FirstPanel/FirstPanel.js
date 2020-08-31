@@ -19,7 +19,6 @@ const useStyles = makeStyles(theme => ({
    },
 }))
 const calcResult = values => {
-   // console.log(values)
    return [25, 25, 25, 25]
 }
 export default function FirstPanel({ setValue, setDonatValue }) {
@@ -41,11 +40,11 @@ export default function FirstPanel({ setValue, setDonatValue }) {
             quantityMoney: {
                quantity: [13, 95],
             },
-            transferQuestions: {
-               checked: [],
-            },
+
+            left: ['vobler', 'drag', 'dynamite', 'rat poison', 'worms', 'electric rod'],
+            right: ['ratlins', 'fishing net', 'boilies', 'jig', 'fly', 'trolling'],
          }}
-         validationSchema={SignupSchema}
+         // validationSchema={SignupSchema}
          onSubmit={values => {
             const result = calcResult(values)
             console.log(values)

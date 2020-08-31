@@ -34,7 +34,6 @@ export default function FishingStyle({ errors, touched }) {
       setFieldValue(name, event.target.value)
    }
 
-   // console.log(errors)
    return (
       <Field name="fishingStyle">
          {({ field, form }) => (

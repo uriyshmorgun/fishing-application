@@ -47,7 +47,7 @@ export default function QuantitySlider(props) {
                   {/* {form.values[`${props.name}`].messege} */}
                   {/* {console.log(form)} */}
                   {props.name === 'quantityMoney'
-                     ? 'Choose "min" and "max" expenses per day'
+                     ? 'Choose "min" and "max" money expenses per day'
                      : 'Choose "min" and "max" fishing result per day'}
                </Typography>
             </Box>

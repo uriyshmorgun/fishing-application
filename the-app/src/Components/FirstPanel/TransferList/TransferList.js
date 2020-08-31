@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Grid from '@material-ui/core/Grid'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
-import Checkbox from '@material-ui/core/Checkbox'
-import Button from '@material-ui/core/Button'
-import Paper from '@material-ui/core/Paper'
 import { Field } from 'formik'
+import {
+   makeStyles,
+   Grid,
+   List,
+   ListItem,
+   ListItemIcon,
+   ListItemText,
+   Checkbox,
+   Button,
+   Paper,
+   Typography,
+   Box,
+} from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
    root: {
@@ -32,12 +36,11 @@ function intersection(a, b) {
    return a.filter(value => b.indexOf(value) !== -1)
 }
 
-export default function TransferList({ errors, touched }) {
+export default function TransferList({ errors, touched, form, field }) {
    const classes = useStyles()
    const [checked, setChecked] = useState([])
-   const [left, setLeft] = useState(['jig', 'vobler', 'drag'])
-   const [right, setRight] = useState(['dinamite', 'narrow'])
-
+   const [left, setLeft] = useState(['vobler', 'drag', 'dynamite', 'rat poison', 'worms', 'electric rod'])
+   const [right, setRight] = useState(['ratlins', 'fishing net', 'boilies', 'jig', 'fly', 'trolling'])
    const leftChecked = intersection(checked, left)
    const rightChecked = intersection(checked, right)
 
@@ -54,24 +57,33 @@ export default function TransferList({ errors, touched }) {
       setChecked(newChecked)
    }
 
-   const handleAllRight = () => {
+   const handleAllRight = (event, name, setFieldValue) => {
+      setFieldValue('right', right.concat(left))
+      setFieldValue('left', [])
       setRight(right.concat(left))
       setLeft([])
    }
 
-   const handleCheckedRight = () => {
+   const handleCheckedRight = (event, name, setFieldValue) => {
+      // console.log(name)
+      setFieldValue('right', right.concat(leftChecked))
+      setFieldValue('left', not(left, leftChecked))
       setRight(right.concat(leftChecked))
       setLeft(not(left, leftChecked))
       setChecked(not(checked, leftChecked))
    }
 
-   const handleCheckedLeft = () => {
+   const handleCheckedLeft = (event, name, setFieldValue) => {
+      setFieldValue('left', left.concat(rightChecked))
+      setFieldValue('right', not(right, rightChecked))
       setLeft(left.concat(rightChecked))
       setRight(not(right, rightChecked))
       setChecked(not(checked, rightChecked))
    }
 
-   const handleAllLeft = () => {
+   const handleAllLeft = (event, name, setFieldValue) => {
+      setFieldValue('left', left.concat(right))
+      setFieldValue('right', [])
       setLeft(left.concat(right))
       setRight([])
    }
@@ -84,11 +96,7 @@ export default function TransferList({ errors, touched }) {
                return (
                   <ListItem key={value} role="listitem" button onClick={handleToggle(value)}>
                      <ListItemIcon>
-                        <Field
-                           value={value}
-                           as={Checkbox}
-                           type="checkbox"
-                           name="transferQuestions"
+                        <Checkbox
                            checked={checked.indexOf(value) !== -1}
                            tabIndex={-1}
                            disableRipple
@@ -105,49 +113,75 @@ export default function TransferList({ errors, touched }) {
    )
 
    return (
-      <Grid container spacing={2} justify="center" alignItems="center" className={classes.root}>
-         <Grid item>{customList(left)}</Grid>
-         <Grid item>
-            <Grid container direction="column" alignItems="center">
-               <Button
-                  variant="outlined"
-                  size="small"
-                  className={classes.button}
-                  onClick={handleAllRight}
-                  disabled={left.length === 0}
-                  aria-label="move all right">
-                  ≫
-               </Button>
-               <Button
-                  variant="outlined"
-                  size="small"
-                  className={classes.button}
-                  onClick={handleCheckedRight}
-                  disabled={leftChecked.length === 0}
-                  aria-label="move selected right">
-                  &gt;
-               </Button>
-               <Button
-                  variant="outlined"
-                  size="small"
-                  className={classes.button}
-                  onClick={handleCheckedLeft}
-                  disabled={rightChecked.length === 0}
-                  aria-label="move selected left">
-                  &lt;
-               </Button>
-               <Button
-                  variant="outlined"
-                  size="small"
-                  className={classes.button}
-                  onClick={handleAllLeft}
-                  disabled={right.length === 0}
-                  aria-label="move all left">
-                  ≪
-               </Button>
-            </Grid>
-         </Grid>
-         <Grid item>{customList(right)}</Grid>
-      </Grid>
+      <>
+         <Box p={2} boxShadow={2}>
+            <Typography variant="h6" gutterBottom align="left">
+               Task:
+            </Typography>
+            <Typography variant="subtitle2" gutterBottom align="left">
+               Place in the correct order next blocks of permitted and prohibited types of fishing
+            </Typography>
+         </Box>
+         <Field name="transferQuestions">
+            {({ field, form }) => (
+               <Grid container spacing={2} justify="center" alignItems="center" className={classes.root}>
+                  <Grid item>
+                     <Box mt={3}>
+                        <Typography variant="subtitle1" gutterBottom align="center">
+                           Permitted
+                        </Typography>
+                     </Box>
+                     {customList(left, field, form)}
+                  </Grid>
+                  <Grid item>
+                     <Grid container direction="column" alignItems="center">
+                        <Button
+                           variant="outlined"
+                           size="small"
+                           className={classes.button}
+                           onClick={e => handleAllRight(e, 'right', form.setFieldValue)}
+                           disabled={left.length === 0}
+                           aria-label="move all right">
+                           ≫
+                        </Button>
+                        <Button
+                           variant="outlined"
+                           size="small"
+                           className={classes.button}
+                           onClick={e => handleCheckedRight(e, 'right', form.setFieldValue)}
+                           disabled={leftChecked.length === 0}
+                           aria-label="move selected right">
+                           &gt;
+                        </Button>
+                        <Button
+                           variant="outlined"
+                           size="small"
+                           className={classes.button}
+                           onClick={e => handleCheckedLeft(e, 'left', form.setFieldValue)}
+                           disabled={rightChecked.length === 0}
+                           aria-label="move selected left">
+                           &lt;
+                        </Button>
+                        <Button
+                           variant="outlined"
+                           size="small"
+                           className={classes.button}
+                           onClick={e => handleAllLeft(e, 'left', form.setFieldValue)}
+                           disabled={right.length === 0}
+                           aria-label="move all left">
+                           ≪
+                        </Button>
+                     </Grid>
+                  </Grid>
+                  <Grid item>
+                     <Typography variant="subtitle1" gutterBottom align="center">
+                        Prohibited
+                     </Typography>
+                     {customList(right)}
+                  </Grid>
+               </Grid>
+            )}
+         </Field>
+      </>
    )
 }
