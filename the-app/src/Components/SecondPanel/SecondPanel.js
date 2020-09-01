@@ -43,9 +43,8 @@ export default function FirstPanel() {
                <Box textAlign="center">
                   <Grid container spacing={8} direction="row" justify="space-around" alignItems="center">
                      <Grid item md={12}>
-                        <Donat data={data} width={400} height={400} innerRadius={80} outerRadius={200} />
+                        <Donat data={data} width={400} height={400} innerRadius={80} outerRadius={200} /> 
                         {/* <ChartUsers data={dataChart} /> */}
-                        <svg></svg>
                      </Grid>
                   </Grid>
                </Box>
