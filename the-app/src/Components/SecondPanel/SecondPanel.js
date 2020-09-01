@@ -6,14 +6,12 @@ import ChartUsers from './ChartUsers'
 import * as d3 from 'd3'
 import Svg from './svg'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
    root: {
       padding: theme.spacing(6),
       marginTop: '2rem',
    },
 }))
-
-// useStyles = 'dddd'
 
 export default function FirstPanel() {
    const classes = useStyles()
@@ -45,11 +43,8 @@ export default function FirstPanel() {
                <Box textAlign="center">
                   <Grid container spacing={8} direction="row" justify="space-around" alignItems="center">
                      <Grid item md={12}>
-                        {/* <Donat data={data} width={400} height={400} innerRadius={80} outerRadius={200} /> */}
-                        <ChartUsers data={dataChart} />
-                        {/* <svg></svg>
-                           
-                        </Svg> */}
+                        <Donat data={data} width={400} height={400} innerRadius={80} outerRadius={200} /> 
+                        {/* <ChartUsers data={dataChart} /> */}
                      </Grid>
                   </Grid>
                </Box>
