@@ -1,8 +1,7 @@
 {
-  "extends": "react-app",
-  "plugins": ["prettier"],
-  "rules": {
-    "prettier/prettier": "error",
-    "eslint-disable-next-line"
-  }
+   "extends": "react-app",
+   "plugins": ["prettier"],
+   "rules": {
+      "prettier/prettier": "error"
+   }
 }
